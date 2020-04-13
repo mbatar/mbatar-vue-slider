@@ -1,0 +1,21 @@
+{
+    "name": "mbatar-vue-slider",
+    "version": "1.0.8",
+    "description": "Mustafa Batar tarafından hazırlanmıştır",
+    "main": "Slider.vue",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "vuejs",
+        "slider",
+        "slide",
+        "mbatar",
+        "slider component"
+    ],
+    "author": "mbatar | Mustafa Batar | batarmustafa@gmail.com",
+    "license": "ISC",
+    "dependencies": {
+        "user": "0.0.0"
+    }
+}
