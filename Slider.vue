@@ -75,7 +75,9 @@ export default {
       this.showControl = true;
     },
     onMouseLeave() {
-      this.showControl = false;
+      setTimeout(() => {
+        this.showControl = false;
+      }, 600);
     },
     enter() {
       this.isOk = true;
@@ -181,10 +183,14 @@ export default {
   color: gray;
   padding: 10px;
   width: 100%;
+  z-index: 1;
 }
 .description a {
   text-decoration: none;
   color: gray;
+}
+.description h3{
+  cursor: default;
 }
 
 /*---------------------------- FADE -------------------------*/
@@ -264,4 +270,5 @@ fade-enter-active,
   }
 }
 </style>
+
 
