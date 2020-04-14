@@ -1,6 +1,6 @@
 {
     "name": "mbatar-vue-slider",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "Mustafa Batar tarafından hazırlanmıştır",
     "main": "Slider.vue",
     "scripts": {
@@ -15,7 +15,8 @@
     ],
     "author": "mbatar | Mustafa Batar | batarmustafa@gmail.com",
     "license": "ISC",
-    "dependencies": {
-        "user": "0.0.0"
-    }
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/mbatar/mbatar-vue-slider"
+  }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="slider" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div class="mbatar-vue-slider" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <transition-group
       :name="currentSlideMode"
       mode="out-in"
@@ -7,13 +7,12 @@
       @before-leave="before"
     >
       <img
-        id="image"
         :src="options.slides[currentSlide].src"
         :key="options.slides[currentSlide].id"
-        class="slider-image"
+        class="mbatar-vue-slider-slider-image"
       />
       <div
-        class="description"
+        class="mbatar-vue-slider-description"
         v-if="options.slides[currentSlide].description"
         :key="options.slides[currentSlide].src"
       >
@@ -25,9 +24,9 @@
         </p>
       </div>
     </transition-group>
-    <div id="controls">
-      <img class="control" src="./assets/previous.png" @click="prevSlide" />
-      <img class="control" src="./assets/next.png" @click="nextSlide" />
+    <div class="mbatar-vue-slider-controls">
+      <img class="mbatar-vue-slider-control" src="./assets/previous.png" @click="prevSlide" />
+      <img class="mbatar-vue-slider-control" src="./assets/next.png" @click="nextSlide" />
     </div>
   </div>
 </template>
@@ -56,18 +55,18 @@ export default {
   },
   methods: {
     nextSlide() {
-      if (this.currentSlideMode === "fade") {
+      if (this.currentSlideMode === "mbatar-vue-slider-fade") {
         this.currentSlide++;
       } else {
-        this.currentSlideMode = "slide-left";
+        this.currentSlideMode = "mbatar-vue-slider-slide-left";
         this.currentSlide++;
       }
     },
     prevSlide() {
-      if (this.currentSlideMode === "fade") {
+      if (this.currentSlideMode === "mbatar-vue-slider-fade") {
         this.currentSlide--;
       } else {
-        this.currentSlideMode = "slide-right";
+        this.currentSlideMode = "mbatar-vue-slider-slide-right";
         this.currentSlide--;
       }
     },
@@ -97,12 +96,14 @@ export default {
   created() {
     if (this.options.mode) {
       if (this.options.mode === "slide") {
-        this.currentSlideMode = "slide-left";
+        this.currentSlideMode = "mbatar-vue-slider-slide-left";
+      } else if (this.options.mode === "fade") {
+        this.currentSlideMode = "mbatar-vue-slider-fade";
       } else {
         this.currentSlideMode = this.options.mode;
       }
     } else {
-      this.currentSlideMode = "slide-left";
+      this.currentSlideMode = "mbatar-vue-slider-slide-left";
     }
 
     if (this.options.auto) {
@@ -126,8 +127,8 @@ export default {
     },
     isOk(val) {
       if (val) {
-        if (this.currentSlideMode === "slide-right") {
-          this.currentSlideMode = "slide-left";
+        if (this.currentSlideMode === "mbatar-vue-slider-slide-right") {
+          this.currentSlideMode = "mbatar-vue-slider-slide-left";
         }
       }
     }
@@ -135,25 +136,20 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-#slider {
+<style>
+.mbatar-vue-slider {
   width: 100%;
   height: 100%;
   margin: 0 auto;
   position: relative;
   display: inline-block;
+  overflow: hidden;
 }
-#slider .slider-image {
+.mbatar-vue-slider .mbatar-vue-slider-slider-image {
   width: 100%;
   height: 100%;
 }
-#controls {
+.mbatar-vue-slider-controls {
   position: absolute;
   opacity: 0;
   top: 0;
@@ -166,17 +162,17 @@ export default {
   transition: opacity 0.5s;
 }
 
-#slider:hover #controls {
+.mbatar-vue-slider:hover .mbatar-vue-slider-controls {
   transition: opacity 0.5s;
   opacity: 1;
 }
 
-#controls .control {
+.mbatar-vue-slider-controls .mbatar-vue-slider-control {
   cursor: pointer;
   width: 5rem;
   height: 5rem;
 }
-.description {
+.mbatar-vue-slider-description {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -185,37 +181,37 @@ export default {
   width: 100%;
   z-index: 1;
 }
-.description a {
+.mbatar-vue-slider-description a {
   text-decoration: none;
   color: gray;
 }
-.description h3{
+.mbatar-vue-slider-description h3 {
   cursor: default;
 }
 
 /*---------------------------- FADE -------------------------*/
 
-fade-enter-active,
-.fade-leave-active {
+.mbatar-vue-slider-fade-enter-active,
+.mbatar-vue-slider-fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter,
-.fade-leave-active {
+.mbatar-vue-slider-fade-enter,
+.mbatar-vue-slider-fade-leave-active {
   opacity: 0;
 }
 
 /*-------------------------- SLIDE LEFT -------------------------*/
 
-.slide-left-enter-active {
+.mbatar-vue-slider-slide-left-enter-active {
   animation: slide-left-in 1s ease-out forwards;
 }
 
-.slide-left-leave-active {
+.mbatar-vue-slider-slide-left-leave-active {
   animation: slide-left-out 1s ease-out forwards;
   position: absolute;
 }
 
-.slide-left-move {
+.mbatar-vue-slider-slide-left-move {
   transition: transform 1s;
 }
 
@@ -239,16 +235,16 @@ fade-enter-active,
 
 /*--------------------------- SLIDE RIGHT ------------------------*/
 
-.slide-right-enter-active {
+.mbatar-vue-slider-slide-right-enter-active {
   animation: slide-right-in 1s ease-out forwards;
 }
-.slide-right-leave {
+.mbatar-vue-slider-slide-right-leave {
 }
-.slide-right-leave-active {
+.mbatar-vue-slider-slide-right-leave-active {
   animation: slide-right-out 1s ease-out forwards;
   position: absolute;
 }
-.slide-right-move {
+.mbatar-vue-slider-slide-right-move {
   transition: transform 1s;
 }
 
@@ -270,5 +266,6 @@ fade-enter-active,
   }
 }
 </style>
+
 
 
